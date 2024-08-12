@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: stretch;
     border-radius: 20px;
-    box-shadow: 10px 10px 10px rgb(185, 185, 185);
+    box-shadow: 10px 10px 15px #9a9a9a;
 }
 
 .buttons {
@@ -24,7 +24,7 @@
 button {
     background-color: #7C7C7B;
     width: 50px;
-    height: 50px;
+    height: 45px;
     color: #EBEBEB;
     border: 1px solid #515050;
     margin: 0;
@@ -36,7 +36,7 @@ button.toprow {
     background-color: #626261;
 }
 
-button.op {
+button.op, .equals{
     background-color: #FFA00A;
 }
 
@@ -49,7 +49,7 @@ button.toprow.clicked {
     background-color: #7C7B7B;
 }
 
-button.op.clicked {
+button.op.clicked, button.equals.clicked {
     background-color: #CB7D08;
 }
 
@@ -61,7 +61,7 @@ button.clicked {
     background-color: #B0B0B0;
 }
 
-button.op.equals {
+button.equals {
     border-radius: 0 0 10px 0;
 }
 
@@ -71,7 +71,8 @@ button.op.equals {
     background-color: #515150;
     color: #EBEBEB;
     text-align: right;
-    font-size: 20px;
+    font-size: 30px;
+    font-weight: 200;
     padding: 10px 20px;
     border: 0;
     border-radius: 10px 10px 0 0;

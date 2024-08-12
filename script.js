@@ -85,6 +85,7 @@ buttons.addEventListener('click', function (event) {
         if(ac)
         {
             clear.innerText = "C";
+            ac = false;
         }
         appendToDisplay(target.innerText);
     }
@@ -134,15 +135,23 @@ function appendToDisplay(value)
 
 function clearDisplay()
 {
-    clear.innerText = "AC";
+    if(ac)
+    {
+        firstOperand = null;
+        operator = null;
+        waitingForSecondOperand = true;
+        lastOperand = null;
+        lastOperator = null;
+    }
+    else
+    {
+        clear.innerText = "AC";
+        lastOperand = null;
+        waitingForSecondOperand = true;
+        ac = true;
+    }
     display.innerText = '0';
 
-    firstOperand = null;
-    operator = null;
-    waitingForSecondOperand = false;
-    lastOperand = null;
-    lastOperator = null;
-    ac = true;
 }
 
 function toggleSign()
@@ -164,12 +173,6 @@ function handleOperator(nextOperator)
     {
         firstOperand = inputValue;
     }
-    else if(operator)
-    {
-        const result = compute(firstOperand, inputValue, operator);
-        display.innerText = formatResult(result);
-        firstOperand = result;
-    }
 
     operator = nextOperator;
     waitingForSecondOperand = true;
@@ -189,7 +192,7 @@ function calculateResult()
         lastOperator = operator;
     }
     // If we hit equals without any new valid operations, recalculate last operation
-    if(!operator && lastOperator)
+    else if (lastOperator)
     {
         operator = lastOperator;
         inputValue = lastOperand;
@@ -200,7 +203,7 @@ function calculateResult()
         const result = compute(firstOperand, inputValue, operator);
         display.innerText = formatResult(result);
         firstOperand = result;
-        waitingForSecondOperand = true;
+        waitingForSecondOperand = false;
     }
     operator = null;
 }
