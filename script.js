@@ -122,7 +122,7 @@ function handleDot()
 
 function appendToDisplay(value)
 {
-    if(waitingForSecondOperand)
+    if(waitingForSecondOperand && firstOperand != null)
     {
         display.innerText = value;
         waitingForSecondOperand = false;
@@ -169,13 +169,17 @@ function handleOperator(nextOperator)
 {
     const inputValue = parseFloat(display.innerText);
 
+    if(!waitingForSecondOperand)
+    {
+        calculateResult();
+    }
+    
     if (firstOperand === null)
     {
         firstOperand = inputValue;
     }
-
+    
     operator = nextOperator;
-    waitingForSecondOperand = true;
 }
 
 function calculateResult()
@@ -200,10 +204,10 @@ function calculateResult()
 
     if(firstOperand !== null && operator)
     {
-        const result = compute(firstOperand, inputValue, operator);
+        const result = Math.round(compute(firstOperand, inputValue, operator) * 1000000) / 1000000;
         display.innerText = formatResult(result);
         firstOperand = result;
-        waitingForSecondOperand = false;
+        waitingForSecondOperand = true;
     }
     operator = null;
 }
