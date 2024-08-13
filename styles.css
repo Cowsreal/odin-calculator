@@ -26,7 +26,7 @@ button {
     width: 50px;
     height: 45px;
     color: #EBEBEB;
-    border: 1px solid #515050;
+    border: .5px solid #515050;
     margin: 0;
     box-sizing: border-box;
     font-size: 20px;
@@ -54,7 +54,7 @@ button.op.clicked, button.equals.clicked {
 }
 
 button.op.clickedBorder {
-    border: 3px solid #515050;
+    border: 1px solid #515050;
 }
 
 button.clicked {
